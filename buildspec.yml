@@ -12,14 +12,15 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t  $REPOSITORY_URI:160006709718.dkr.ecr.us-east-1.amazonaws.com/aws-ecr:demo-app-${BUILD_NUMBER} .
+      - docker build -t 160006709718.dkr.ecr.us-east-1.amazonaws.com/aws-ecr:demo-app-${BUILD_NUMBER} .
+         
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:160006709718.dkr.ecr.us-east-1.amazonaws.com/aws-ecr:demo-app-${BUILD_NUMBER}
+      - docker push 160006709718.dkr.ecr.us-east-1.amazonaws.com/aws-ecr:demo-app-${BUILD_NUMBER}
       - echo writing image definitions file...
-      - printf '[{"name":"demo","imageUri":"%s"}]' $REPOSITORY_URI:160006709718.dkr.ecr.us-east-1.amazonaws.com/aws-ecr:demo-app-${BUILD_NUMBER} > imagedefinitions.json
+      - printf '[{"name":"demo","imageUri":"%s"}]' 160006709718.dkr.ecr.us-east-1.amazonaws.com/aws-ecr:demo-app-${BUILD_NUMBER} > imagedefinitions.json
       - cat imagedefinitions.json 
       - pwd
 artifacts:
